@@ -691,7 +691,7 @@ void CDelphiSpace::setGaussian()
                         //gepsmp2[ix][iy][iz].nX=1;
                         gepsmp2[ix][iy][iz].nX=1 + (epstemp - 1)*exp(epstemp - gepsmp2[ix][iy][iz].nX);
                     }// if
-                    if(gepsmp[ix][iy][iz].nY < srfdens)
+                    if(gepsmp[ix][iy][iz].nY < srfden)
                     {
                         //gepsmp2[ix][iy][iz].nY=repsin;
                         //gepsmp2[ix][iy][iz].nY=1;

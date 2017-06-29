@@ -671,7 +671,7 @@ void CDelphiSpace::setGaussian()
     {
 		// epstemp=repsin*(1-srfcut)+repsout*srfcut
         epstemp=srfcut;
-		delphi_real shan_sigma = 8.0;
+		delphi_real shan_sigma = 0.8;
         delphi_real srfden = 0.759493670886076;
         
 		if(epstemp<repsin)
@@ -687,26 +687,26 @@ void CDelphiSpace::setGaussian()
             {
                 for(iz=1; iz<=iGrid; iz++)
                 {
-                    if(gepsmp2[ix][iy][iz].nX < srfden)
+                    if(gepsmp[ix][iy][iz].nX < srfden)
                     {
                         //gepsmp2[ix][iy][iz].nX=repsin;
                         //gepsmp2[ix][iy][iz].nX=1;
                         //gepsmp2[ix][iy][iz].nX=1 + (epstemp - 1)*exp(epstemp - gepsmp2[ix][iy][iz].nX);
-                        gepsmp2[ix][iy][iz].nX = 1 + (gepsmp2[ix][iy][iz].nX - 1)*exp(-(gepsmp2[ix][iy][iz].nX - epstemp)*(gepsmp2[ix][iy][iz].nX - epstemp)/(shan_sigma*shan_sigma));
+                        gepsmp2[ix][iy][iz].nX = 1 + (gepsmp2[ix][iy][iz].nX - 1)*exp(-(gepsmp[ix][iy][iz].nX - srfden)*(gepsmp[ix][iy][iz].nX - srfden)/(shan_sigma*shan_sigma));
                     }// if
-                    if(gepsmp2[ix][iy][iz].nY < srfden)
+                    if(gepsmp[ix][iy][iz].nY < srfden)
                     {
                         //gepsmp2[ix][iy][iz].nY=repsin;
                         //gepsmp2[ix][iy][iz].nY=1;
                         //gepsmp2[ix][iy][iz].nY=1 + (epstemp - 1)*exp(epstemp - gepsmp2[ix][iy][iz].nY);
-                        gepsmp2[ix][iy][iz].nY = 1 + (gepsmp2[ix][iy][iz].nY - 1)*exp(-(gepsmp2[ix][iy][iz].nY - epstemp)*(gepsmp2[ix][iy][iz].nY - epstemp)/(shan_sigma*shan_sigma));
+                        gepsmp2[ix][iy][iz].nY = 1 + (gepsmp2[ix][iy][iz].nY - 1)*exp(-(gepsmp[ix][iy][iz].nY - srfden)*(gepsmp[ix][iy][iz].nY - srfden)/(shan_sigma*shan_sigma));
                     }// if
-                    if(gepsmp2[ix][iy][iz].nZ < srfden)
+                    if(gepsmp[ix][iy][iz].nZ < srfden)
                     {
                         //gepsmp2[ix][iy][iz].nZ=repsin;
                         //gepsmp2[ix][iy][iz].nZ=1;
                         //gepsmp2[ix][iy][iz].nZ=1 + (epstemp - 1)*exp(epstemp - gepsmp2[ix][iy][iz].nZ);
-                        gepsmp2[ix][iy][iz].nZ = 1 + (gepsmp2[ix][iy][iz].nZ - 1)*exp(-(gepsmp2[ix][iy][iz].nZ - epstemp)*(gepsmp2[ix][iy][iz].nZ - epstemp)/(shan_sigma*shan_sigma));
+                        gepsmp2[ix][iy][iz].nZ = 1 + (gepsmp2[ix][iy][iz].nZ - 1)*exp(-(gepsmp[ix][iy][iz].nZ - srfden)*(gepsmp[ix][iy][iz].nZ - srfden)/(shan_sigma*shan_sigma));
                     }// if
                 }//do
             }//do
