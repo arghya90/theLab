@@ -671,6 +671,8 @@ void CDelphiSpace::setGaussian()
     {
 // epstemp=repsin*(1-srfcut)+repsout*srfcut
         epstemp=srfcut;
+        delphi_real srfden = 0.759493670886076;
+        
         if(epstemp<repsin)
         {
             cout << "srfcut is lower than epsin." << endl;
@@ -683,19 +685,19 @@ void CDelphiSpace::setGaussian()
             {
                 for(iz=1; iz<=iGrid; iz++)
                 {
-                    if(gepsmp[ix][iy][iz].nX>0.5)
+                    if(gepsmp[ix][iy][iz].nX < srfden)
                     {
                         //gepsmp2[ix][iy][iz].nX=repsin;
                         //gepsmp2[ix][iy][iz].nX=1;
                         gepsmp2[ix][iy][iz].nX=1 + (epstemp - 1)*exp(epstemp - gepsmp2[ix][iy][iz].nX);
                     }// if
-                    if(gepsmp[ix][iy][iz].nY>0.5)
+                    if(gepsmp[ix][iy][iz].nY < srfdens)
                     {
                         //gepsmp2[ix][iy][iz].nY=repsin;
                         //gepsmp2[ix][iy][iz].nY=1;
                         gepsmp2[ix][iy][iz].nY=1 + (epstemp - 1)*exp(epstemp - gepsmp2[ix][iy][iz].nY);
                     }// if
-                    if(gepsmp[ix][iy][iz].nZ>0.5)
+                    if(gepsmp[ix][iy][iz].nZ < srfden)
                     {
                         //gepsmp2[ix][iy][iz].nZ=repsin;
                         //gepsmp2[ix][iy][iz].nZ=1;
