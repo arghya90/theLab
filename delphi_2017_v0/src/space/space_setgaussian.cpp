@@ -683,19 +683,19 @@ void CDelphiSpace::setGaussian()
             {
                 for(iz=1; iz<=iGrid; iz++)
                 {
-                    if(gepsmp2[ix][iy][iz].nX>epstemp)
+                    if(gepsmp[ix][iy][iz].nX>0.5)
                     {
                         //gepsmp2[ix][iy][iz].nX=repsin;
                         //gepsmp2[ix][iy][iz].nX=1;
                         gepsmp2[ix][iy][iz].nX=1 + (epstemp - 1)*exp(epstemp - gepsmp2[ix][iy][iz].nX);
                     }// if
-                    if(gepsmp2[ix][iy][iz].nY>epstemp)
+                    if(gepsmp[ix][iy][iz].nY>0.5)
                     {
                         //gepsmp2[ix][iy][iz].nY=repsin;
                         //gepsmp2[ix][iy][iz].nY=1;
                         gepsmp2[ix][iy][iz].nY=1 + (epstemp - 1)*exp(epstemp - gepsmp2[ix][iy][iz].nY);
                     }// if
-                    if(gepsmp2[ix][iy][iz].nZ>epstemp)
+                    if(gepsmp[ix][iy][iz].nZ>0.5)
                     {
                         //gepsmp2[ix][iy][iz].nZ=repsin;
                         //gepsmp2[ix][iy][iz].nZ=1;
