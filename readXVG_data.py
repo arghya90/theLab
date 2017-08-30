@@ -13,6 +13,7 @@ xvgn = sys.argv[1]
 outn = sys.argv[2]
 
 fout = open(outn, 'w')
+fout.write("# Converted from " + xvgn + "\n")
 with open(xvgn, 'r') as fxvg:
     for line in fxvg:
         if not (line.startswith("#") or line.startswith("@")):
