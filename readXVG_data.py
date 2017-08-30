@@ -1,33 +1,28 @@
-import os
+import os, sys
 
-os.chdir("/Users/arghyachakravorty/Box Sync/Gaussian_multiDielectric/allPDB_MD23_20ns_EDR")
+help_m = "This script takes a XVG file as an input and outputs a txt file whise name should also be supplied as an input."
+syntax = "python readXVG_data.py <XVG file> <OUTPUT file name with extension>"
 
-run = 2
-with open("../common/pdb_id.list","r") as fPDB:
-    pids = [pid.strip() for pid in fPDB]
+if len(sys.argv) != 3:
+	print(help_m)
+	print(syntax)
+	sys.exit()
 
-print("A total of {} ids read".format(len(pids)))
+#input arguments
+xvgn = sys.argv[1]
+outn = sys.argv[2]
 
-# pid = "1aho"
-# 
-
-for pid in pids:
-    pid = pid.upper()
-    run_num = str(run)
-    
-    xvg = pid + "_md"+ run_num + "_energy.xvg"
-    
-    out = xvg.replace(".xvg","_formatted.dat")
-    fout = open(out, 'w')
-    
-    with open(xvg, 'r') as fxvg:
-        for line in fxvg:
-            if not (line.startswith("#") or line.startswith("@")):
-                time, pe = line.split()
-                fout.write("{}\t{}\t{}\n".format(time, run, pe))
-                
-    fout.close()
-    print("Formatting XVG for {} is done".format(pid))
+fout = open(outn, 'w')
+with open(xvgn, 'r') as fxvg:
+    for line in fxvg:
+        if not (line.startswith("#") or line.startswith("@")):
+            element_array = line.split()
+            for ele in element_array:
+            	fout.write("{}\t".format(ele))
+            fout.write("\n")
+            
+fout.close()
+print("Successfully completed converting " + xvgn + " --> " + outn)
 
             
             
